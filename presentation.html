@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image de Présentation - Spodoptera Detection App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        header p {
+            color: #7f8c8d;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        #preview-canvas {
+            width: 1024px;
+            height: 500px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+        }
+        
+        .download-btn {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .instructions {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .instructions h3 {
+            color: #f39c12;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 1100px) {
+            #preview-canvas {
+                width: 100%;
+                height: auto;
+                max-width: 1024px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image de Présentation pour Spodoptera Detection App</h1>
+            <p>Dimensions: 1024 × 500 pixels - Format PNG</p>
+        </header>
+        
+        <div class="canvas-container">
+            <canvas id="preview-canvas" width="1024" height="500"></canvas>
+        </div>
+        
+        <div class="download-btn">
+            <button class="btn" id="download-btn">Télécharger l'image</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>Comment télécharger l'image</h3>
+            <ol>
+                <li>Cliquez sur le bouton "Télécharger l'image" ci-dessus</li>
+                <li>L'image sera téléchargée au format PNG</li>
+                <li>Si nécessaire, vous pouvez la convertir en JPEG avec un outil de conversion en ligne</li>
+                <li>L'image respecte les dimensions requises de 1024 × 500 pixels</li>
+            </ol>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Spodoptera Detection App - Outil de création d'image de présentation | 2024</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('preview-canvas');
+            const ctx = canvas.getContext('2d');
+            const downloadBtn = document.getElementById('download-btn');
+            
+            // Dessiner l'image de présentation
+            function drawPresentation() {
+                // Fond
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, '#2c3e50');
+                gradient.addColorStop(1, '#4ca1af');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Motif de fond
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+                for (let i = 0; i < 100; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height;
+                    const size = Math.random() * 5 + 2;
+                    ctx.beginPath();
+                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // Icône de chenille (simplifiée)
+                ctx.fillStyle = '#8bc34a';
+                ctx.beginPath();
+                ctx.ellipse(200, 250, 120, 60, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.fillStyle = '#689f38';
+                ctx.beginPath();
+                ctx.ellipse(170, 230, 25, 25, 0, 0, Math.PI * 2);
+                ctx.ellipse(230, 230, 25, 25, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Texte principal
+                ctx.font = 'bold 48px Arial';
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.fillText('Spodoptera Detection App', 650, 200);
+                
+                // Sous-titre
+                ctx.font = '28px Arial';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.fillText('Détection intelligente pour une agriculture durable', 650, 250);
+                
+                // Message d'accueil
+                ctx.font = 'italic 24px Arial';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fillText('Soyez les bienvenues!', 650, 320);
+                
+                // Points forts
+                ctx.font = '20px Arial';
+                ctx.textAlign = 'left';
+                ctx.fillText('✓ Détection précise', 550, 370);
+                ctx.fillText('✓ Conseils agroécologiques', 550, 400);
+                ctx.fillText('✓ Base de données participative', 550, 430);
+                ctx.fillText('✓ Interface multilingue', 550, 460);
+            }
+            
+            // Télécharger l'image
+            downloadBtn.addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.download = 'spodoptera_detection_app_presentation.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+            
+            // Dessiner l'image au chargement
+            drawPresentation();
+        });
+    </script>
+</body>
+</html>
